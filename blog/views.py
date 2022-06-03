@@ -1,29 +1,27 @@
 from django.shortcuts import render
 from .models import Post, Category
+from django.http import HttpResponse
 # from django.views.generic import ListView
 
 # Create your views here.
 
-def home(request):
-    all_posts = Post.objects.all().filter(status='published')
-    all_categories = Category.objects.all()
+def navbartop(request):
+    categories = Category.objects.all()
     context = {
-        'posts': all_posts,
-        'categories': all_categories,
-        }
-    return render(request, 'base.html', context)
+        'categories':categories,
+    }
+    return render(request, 'blog/navbartop.html', context)
 
-'''
-def post_single(request, pk):
-    post = Post.objects.get(pk=pk, status='published')
-    context = {'post': post}
-    return render(request, 'index.html', {'post': post})
-'''
-import pdb
+def navbarleft(request, category_id):
+    links = Post.objects.filter(category_id=category_id)
+    context = {
+        'links':links,
+    }
+    return render(request, 'blog/navbarleft.html', context)
 
-def crypto(request, crypto):
-    pdb.set_trace()
-    post = Post.objects.select_related('crypto')
-    context = {'post': crypto}
-    return render(request, 'index.html', context)
-    
+def content(request, link):
+    link_content = Post.objects.filter(link=link)
+    context = {
+        'link_content':link_content,
+    }
+    return render(request, 'blog/content.html', context)
