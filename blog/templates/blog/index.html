@@ -1,5 +1,3 @@
-{% extends 'blog/navbarleft.html' %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,20 +7,18 @@
 </head>
 <body>
 
-{% block content %}
+
+
 {% for category in categories %}
     <a href="/blog/{{ category.id }}/">{{ category.name }}</a>
 {% endfor %}
-{% endblock content %}
 
 <br>
 <br>
-<br>
-Welcome - this is the landing page. Click on one of the Category links to start
+
+{% block content %}
+{% endblock %}
+
+
 
 </body>
-</html>
-
-
-
-

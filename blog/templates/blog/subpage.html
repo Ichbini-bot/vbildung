@@ -1,0 +1,21 @@
+{% for category in categories %}
+    <a href="/blog/{{ category.id }}/">{{ category.name }}</a>
+{% endfor %}
+
+<br>
+<br>
+
+{% for content in link_content %}
+{{ content.link }} <br>
+{% endfor %}
+
+<br>
+<br>
+
+{% for content in link_content %}
+    {{ content.content }}
+{% endfor %}
+
+
+<br>
+<br>

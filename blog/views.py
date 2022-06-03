@@ -5,23 +5,30 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def navbartop(request):
+def index(request):
     categories = Category.objects.all()
+    posts = Post.objects.all()
     context = {
         'categories':categories,
+        'posts': posts,
     }
-    return render(request, 'blog/navbartop.html', context)
+    return render(request, 'blog/index.html', context)
 
-def navbarleft(request, category_id):
-    links = Post.objects.filter(category_id=category_id)
+def page(request, category_id):
+    categories = Category.objects.all()
+    posts = Post.objects.filter(category_id=category_id)
     context = {
-        'links':links,
+        'categories':categories,
+        'posts': posts,
     }
-    return render(request, 'blog/navbarleft.html', context)
+    return render(request, 'blog/page.html', context)
 
-def content(request, link):
+def subpage(request, link):
     link_content = Post.objects.filter(link=link)
+    categories = Category.objects.all()
     context = {
         'link_content':link_content,
+        'categories':categories,
     }
-    return render(request, 'blog/content.html', context)
+    return render(request, 'blog/subpage.html', context)
+

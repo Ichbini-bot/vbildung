@@ -1,0 +1,13 @@
+{% extends 'blog/index.html' %}
+
+
+<br>
+<br>
+{% block content %}
+{% for post in posts%}
+<a href="/blog/{{ post.link }}/">{{ post.link }}</a> <br>
+{% endfor %}
+{% endblock %}
+
+<br>
+<br>
